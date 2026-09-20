@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../models/study_session.dart';
+import 'session_summary_screen.dart';
 import '../providers/sessions_provider.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/session_tile.dart';
@@ -44,7 +45,19 @@ class HomeScreen extends ConsumerWidget {
                 : ListView.builder(
                     itemCount: sessions.length,
                     itemBuilder: (context, index) {
-                      return SessionTile(session: sessions[index]);
+                      final session = sessions[index];
+                      return SessionTile(
+                        session: session,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  SessionSummaryScreen(session: session),
+                            ),
+                          );
+                        },
+                      );
                     },
                   ),
           ),

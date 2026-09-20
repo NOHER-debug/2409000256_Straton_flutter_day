@@ -4,8 +4,9 @@ import '../models/study_session.dart';
 
 class SessionTile extends StatelessWidget {
   final StudySession session;
+  final VoidCallback onTap;
 
-  const SessionTile({super.key, required this.session});
+  const SessionTile({super.key, required this.session, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,7 @@ class SessionTile extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: ListTile(
+        onTap: onTap,
         leading: Icon(
           session.completed ? Icons.check_circle : Icons.cancel,
           color: session.completed ? Colors.green : Colors.orange,
